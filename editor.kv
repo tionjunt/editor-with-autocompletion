@@ -1,0 +1,46 @@
+<EditorWidget>
+    id: editorframe
+    BoxLayout:
+        size: root.size
+        orientation: 'vertical'
+        Button:
+            text: 'save'
+            size_hint: None, None
+            height: 80
+            on_press: root.ask_file_name()
+        TextHelper:
+            id: editor
+            size: root.size
+            multiline: True
+
+
+<FileDialog>
+    id: filedialog
+    title: filechooser.path
+    BoxLayout:
+        orientation: 'vertical'
+        FileChooserIconView:
+            id: filechooser
+        BoxLayout:
+            size_hint: None, None
+            height: 100
+            width: root.width
+            orientation: 'horizontal'
+            TextInput:
+                id: name_setter
+                size_hint_y: None
+                size_hint_x: 0.8
+                height: 100
+                text: 'filename'
+                text_size: 12
+            BoxLayout
+                size_hint_x: 0.2
+                orientation: 'vertical'
+                Button:
+                    size_hint_y: 0.5
+                    text: 'save'
+                    on_press: root.save_file(file_path=filechooser.path, file_name = name_setter.text)
+                Button:
+                    size_hint_y: 0.5
+                    text: 'cancel'
+                    on_press: root.cancel()
